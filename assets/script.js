@@ -44,11 +44,11 @@ const nameFormEl = document.getElementById('name');
 const roleFormEl = document.getElementById('role');
 const emailFormEl = document.getElementById('email');
 const imgFormEl = document.getElementById('img');
-
+//for loop of all the team members in the list
 for (let i = 0; i < teamMembers.length; i++) {
   const userData = teamMembers[i];
   const { name, role, email, img } = userData;
-
+  //and create a card for each
   const markup = `
     <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-4">
         <div class="card bg-dark text-white h-100 shadow">
@@ -70,6 +70,53 @@ for (let i = 0; i < teamMembers.length; i++) {
 
   teamContainerEl.innerHTML += markup
 }
+//console.log(teamContainerEl);
 
-console.log(teamContainerEl);
+function createCard(userData) {
+  const { name, role, email, img } = userData;
+
+  const markup = `
+    <div class="col-12 col-md-6 col-xl-4 mb-4">
+        <div class="card bg-dark text-white h-100 shadow">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="${img}" class="img-fluid object-fit-cover w-100 h-100 d-none d-md-block rounded-start" alt="${name}">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">${name}</h5>
+                        <p class="card-text">${role}</p>
+                        <p class="card-text text-primary">${email}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  `;
+
+  teamContainerEl.innerHTML += markup;
+}
+
+formEl.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const name = nameFormEl.value;
+  const role = roleFormEl.value;
+  const email = emailFormEl.value;
+  const img = imgFormEl.value;
+
+  const newUser = {
+    name,
+    role,
+    email,
+    img
+  };
+
+  teamMembers.push(newUser);  
+  createCard(newUser);       
+
+  formEl.reset();
+});
+
+
 
