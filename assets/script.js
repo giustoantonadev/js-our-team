@@ -37,22 +37,27 @@ const teamMembers = [
   }
 ];
 
-
+//select the elements in the DOM
 const teamContainerEl = document.getElementById("teams-container");
+const formEl = document.getElementById('userForm');
+const nameFormEl = document.getElementById('name');
+const roleFormEl = document.getElementById('role');
+const emailFormEl = document.getElementById('email');
+const imgFormEl = document.getElementById('img');
 
 for (let i = 0; i < teamMembers.length; i++) {
-  const title = teamMembers[i];
-  const { name, role, email, img } = title;
+  const userData = teamMembers[i];
+  const { name, role, email, img } = userData;
 
   const markup = `
-    <div class="col-md-4 mb-4">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-4">
         <div class="card bg-dark text-white h-100 shadow">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="${img}" class="img-fluid rounded-start" alt="${name}">
+                    <img src="${img}" class="img-fluid object-fit-cover w-100 h-100 d-none d-md-block rounded-start" alt="${name}">
                 </div>
                 <div class="col-md-8">
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         <h5 class="card-title">${name}</h5>
                         <p class="card-text">${role}</p>
                         <p class="card-text text-primary">${email}</p>
@@ -67,3 +72,4 @@ for (let i = 0; i < teamMembers.length; i++) {
 }
 
 console.log(teamContainerEl);
+
